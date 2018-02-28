@@ -1,19 +1,20 @@
-function SplashScreen(wrapper_id){
-	var id = '#' + wrapper_id;
-	this.show = show;
-	this.hide = hide;
+var splashScreen = (function(wrapper_id){
+	var wrapper_id = '#' + wrapper_id;
 
-	function show(){
-		setTimeout(hide, 3000);
+	var show = function(){
+		// setTimeout(hide, 3000);
+		hide();
 	}
 
-	function hide(){
-		$(id).fadeOut().delay(500).queue(function(){$(id).remove()});
+	var hide = function(){
+		$(wrapper_id).fadeOut().delay(500).queue(function(){$(wrapper_id).remove()});
 	}
-};
+
+	return {
+		show: show
+	}
+})("loader-wrapper");
 
 $(function(){
-	var splashScreen = new SplashScreen("loader-wrapper");
 	splashScreen.show();
-	$('#toggle').prop('checked', true).delay(5000).queue(function(){$('#toggle').prop('checked', false)});
 });
