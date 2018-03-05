@@ -4,14 +4,17 @@ var gulp = require('gulp'),
 	connect = require('gulp-connect'),
 	clean_css = require('gulp-clean-css'),
 	auto_prefixer = require('gulp-autoprefixer'),
-	concat = require('gulp-concat');
+	concat = require('gulp-concat'),
+	concat_vendor = require('gulp-concat-vendor');
 
-gulp.task('build', ['html', 'css'], function() {
+gulp.task('build', ['html', 'css']);
 
-});
+gulp.task('default', ['watch', 'vendor']);
 
-gulp.task('default', ['watch'], function() {
-	console.log('running default task')
+gulp.task('vendor', function() {
+	gulp.src(['./vendor/**/*.js'])
+		.pipe(concat_vendor('vendor.js'))
+		.pipe(gulp.dest('dist/'));
 });
 
 gulp.task('connect', function() {
@@ -42,7 +45,7 @@ gulp.task('sass', function() {
 
 gulp.task('js', function(){
 	return gulp.src('./js/**/*.js')
-		.pipe(concat('script.js'))
+		.pipe(concat('app.js'))
 		.pipe(gulp.dest('./dist'))
 		.pipe(livereload());
 });
