@@ -4,8 +4,9 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>Winter's Heart</title>
 		<link rel="stylesheet" type="text/css" href="style.min.css">
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
-		<script src="app.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
+		<script src="js/vendor.js"></script>
+		<script src="js/app.js"></script>
 	</head>
 	<body>
 		<div id="loader-wrapper">
@@ -32,5 +33,34 @@
 			<div class="grid-item4">Right</div>
 			<div class="grid-item5">&copy; Nicander Mohrmann 2018</div>
 		</div>
+
+		<div id="spa">
+	<div class="spa-shell-head">
+		<div>
+			<ul>
+				<!--<li><a href="contact">contact</a></li>-->
+				<!--<li><a href="about">over</a></li>-->
+				<li><a class="home" href="/">home</a></li>
+				<li><a class="spa-shell-head-login" href="/login">login</a></li>
+				<li><a class="spa-shell-head-logout">logout</a></li>
+				<li class="spa-shell-head-search"></li>
+
+				<li class="nav-item-profile"><a href="/profile"></a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="spa-shell-main">
+		<div class="spa-shell-main-nav">
+			<nav>
+				<div class="spa-shell-head-logo brand"><img src="images/brand.jpg">
+					<ul class="nav-items"></ul>
+			</nav>
+		</div>
+		<div class="spa-shell-main-content"></div>
+	</div>
+	<footer class="spa-shell-foot">
+	</footer>
+	<div class="spa-shell-modal"></div>
+</div>
 	</body>
 </html>
