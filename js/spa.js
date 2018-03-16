@@ -8,18 +8,6 @@ var spa = (() => {
 	}
 })();
 
-var test = (() => {
-	var hoi = "driehoek";
-
-	var getHoi = () => {
-		return hoi;
-	};
-
-	return {
-		getHoi: getHoi
-	}
-})();
-
 $(() => {
 	spa.initModule('#spa');
 });
