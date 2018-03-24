@@ -264,10 +264,12 @@ spa.router = function () {
       stateMap = { container: null },
       jqueryMap = {},
       setJqueryMap,
-      showLoginPage,
+      showAboutPage,
       showHomepage,
       showSplashScreen,
       showMainHTML,
+      showGamePage,
+      showVideosPage,
       configModule,
       initModule;
   //----------------- END MODULE SCOPE VARIABLES ---------------
@@ -287,17 +289,34 @@ spa.router = function () {
     };
   };
 
-  showLoginPage = function showLoginPage() {
-    console.log('show login page...');
-    var html = spa.template.parseTemplate('features.login.login', {});
-    $('#spa').html(html);
-    // console.log('verwachte exceptie:');
-    // console.log("vendor.js:4266 Uncaught DOMException: Failed to execute 'pushState' on 'History': A history state object with URL...");
+  showAboutPage = function showAboutPage() {
+    var html = spa.template.parseTemplate('features.about.about', {});
+    $('#main-content').html(html);
+
+    spa.hamburger.closeMenu();
+  };
+
+  showVideosPage = function showVideosPage() {
+    spa.videos.initModule();
+    var html = spa.template.parseTemplate('features.videos.videos', { videos: spa.videos.getVideos() });
+    $('#main-content').html(html);
+
+    spa.hamburger.closeMenu();
+  };
+
+  showGamePage = function showGamePage() {
+    var html = spa.template.parseTemplate('features.game.game', {});
+    $('#main-content').html(html);
+
+    spa.hamburger.closeMenu();
   };
 
   showHomepage = function showHomepage() {
-    var html = spa.template.parseTemplate('features.homepage.homepage', { name: 'moederkoek' });
-    $('#spa').html(html);
+
+    var html = spa.template.parseTemplate('features.homepage.homepage', {});
+    $('#main-content').html(html);
+
+    spa.hamburger.closeMenu();
   };
 
   showSplashScreen = function showSplashScreen() {
@@ -310,6 +329,7 @@ spa.router = function () {
     $('#spa').html(html);
 
     setJqueryMap();
+    spa.hamburger.initModule();
   };
 
   // End DOM method /setJqueryMap/
@@ -361,7 +381,9 @@ spa.router = function () {
     page.base('');
     page('/', showHomepage);
     page('/index.html', showHomepage);
-    page('/login', showLoginPage);
+    page('/about', showAboutPage);
+    page('/game', showGamePage);
+    page('/videos', showVideosPage);
     page({ hashbang: true });
 
     return true;
@@ -501,10 +523,73 @@ spa.template = function () {
   };
   //------------------- END PUBLIC METHODS ---------------------
 }();
+spa.data = function () {
+  var _url;
+
+  var initModule = function initModule() {
+    _url = "http://localhost:3000/video";
+  };
+
+  var getJsonData = function getJsonData() {
+    $.ajax({ url: _url }).done(function (data) {
+      return data;
+    });
+  };
+
+  return {
+    initModule: initModule,
+    getJsonData: getJsonData
+  };
+}();
+spa.hamburger = function () {
+
+  var initModule = function initModule() {
+    $('#openMenu').click(function () {
+      openMenu();
+    });
+
+    $('#closeMenu').click(function () {
+      closeMenu();
+    });
+  };
+
+  var openMenu = function openMenu() {
+    $('#nav').removeClass('slideLeft').addClass('slideRight');
+  };
+
+  var closeMenu = function closeMenu() {
+    $('#nav').removeClass('slideRight').addClass('slideLeft');
+  };
+
+  return {
+    initModule: initModule,
+    openMenu: openMenu,
+    closeMenu: closeMenu
+  };
+}();
+spa.videos = function () {
+  var videos = [];
+
+  var initModule = function initModule() {
+    spa.data.initModule();
+    console.log(spa.data.getJsonData());
+    videos = spa.data.getJsonData();
+  };
+
+  var getVideos = function getVideos() {
+    return videos;
+  };
+
+  return {
+    initModule: initModule,
+    getVideos: getVideos
+  };
+}();
 spa.splashscreen = function () {
   var initModule = function initModule() {
     spa.router.showSplashScreen();
-    setTimeout(hide, 3000);
+    // setTimeout(hide, 3000);
+    hide();
   };
 
   var hide = function hide() {

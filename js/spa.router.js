@@ -23,10 +23,12 @@ spa.router = (() => {
 		stateMap = {container: null},
 		jqueryMap = {},
 		setJqueryMap,
-		showLoginPage,
+		showAboutPage,
 		showHomepage,
 		showSplashScreen,
 		showMainHTML,
+		showGamePage,
+		showVideosPage,
 		configModule, initModule;
 //----------------- END MODULE SCOPE VARIABLES ---------------
 
@@ -45,25 +47,42 @@ spa.router = (() => {
 		};
 	};
 
-	showLoginPage = function(){
-		console.log('show login page...');
-		var html = spa.template.parseTemplate('features.login.login', {});
-		$('#spa').html(html);
-		// console.log('verwachte exceptie:');
-		// console.log("vendor.js:4266 Uncaught DOMException: Failed to execute 'pushState' on 'History': A history state object with URL...");
+	showAboutPage = () => {
+		var html = spa.template.parseTemplate('features.about.about', {});
+		$('#main-content').html(html);
 
+		spa.hamburger.closeMenu();
+	};	
+
+	showVideosPage = () => {
+		spa.videos.initModule();
+		var html = spa.template.parseTemplate('features.videos.videos', {videos: spa.videos.getVideos()});
+		$('#main-content').html(html);
+
+		spa.hamburger.closeMenu();
 	};
 
-	showHomepage = () => {
+	showGamePage = () => {
 		var html = spa.template
-			.parseTemplate('features.homepage.homepage', {name:'moederkoek'});
-		$('#spa').html(html)
+			.parseTemplate('features.game.game', {});
+		$('#main-content').html(html);
+
+		spa.hamburger.closeMenu();
+	}
+
+	showHomepage = () => {
+
+		var html = spa.template
+			.parseTemplate('features.homepage.homepage', {});
+		$('#main-content').html(html);
+
+		spa.hamburger.closeMenu();
 	};
 
  	showSplashScreen = () => {
 		var html = spa.template
 			.parseTemplate('features.splashscreen.splashscreen', {});
-			$('#spa').html(html);
+		$('#spa').html(html);
 	};
 
 	showMainHTML = () => {
@@ -72,6 +91,7 @@ spa.router = (() => {
 			$('#spa').html(html);
 
 		setJqueryMap();
+		spa.hamburger.initModule();
 	};
 
 
@@ -124,7 +144,9 @@ spa.router = (() => {
 		page.base('');
 		page('/', showHomepage);
 		page('/index.html', showHomepage);
-		page('/login', showLoginPage);
+		page('/about', showAboutPage);
+		page('/game', showGamePage);
+		page('/videos', showVideosPage);
 		page({hashbang: true});
 
 		return true;

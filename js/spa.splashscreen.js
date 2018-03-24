@@ -1,7 +1,8 @@
 spa.splashscreen = (() => {
 	var initModule = () => {
 		spa.router.showSplashScreen();
-		setTimeout(hide, 3000);
+		// setTimeout(hide, 3000);
+		hide();
 	};
 
 	var hide = () => {
