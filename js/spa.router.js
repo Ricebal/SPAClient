@@ -54,8 +54,13 @@ spa.router = (() => {
 		spa.hamburger.closeMenu();
 	};	
 
-	showVideosPage = () => {
+	var initVideosPage = () => {
+		spa.splashscreen.show();
 		spa.videos.initModule();
+	}
+
+	showVideosPage = () => {
+		showMainHTML();
 		var html = spa.template.parseTemplate('features.videos.videos', {videos: spa.videos.getVideos()});
 		$('#main-content').html(html);
 
@@ -146,7 +151,7 @@ spa.router = (() => {
 		page('/index.html', showHomepage);
 		page('/about', showAboutPage);
 		page('/game', showGamePage);
-		page('/videos', showVideosPage);
+		page('/videos', initVideosPage);
 		page({hashbang: true});
 
 		return true;
@@ -159,7 +164,11 @@ spa.router = (() => {
 		configModule: configModule,
 		initModule: initModule,
 		showSplashScreen: showSplashScreen,
-		showMainHTML: showMainHTML
+		showMainHTML: showMainHTML,
+		showGamePage: showGamePage,
+		showVideosPage: showVideosPage,
+		showAboutPage: showAboutPage,
+		showHomepage: showHomepage
 	};
 //------------------- END PUBLIC METHODS ---------------------
 })();

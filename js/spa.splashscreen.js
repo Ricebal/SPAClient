@@ -5,11 +5,17 @@ spa.splashscreen = (() => {
 		hide();
 	};
 
-	var hide = () => {
-		$('#loader-wrapper').fadeOut().queue(() => {spa.router.showMainHTML()});
+	var show = () => {
+		spa.router.showSplashScreen();
+	};
+
+	var hide = (webpage = spa.router.showMainHTML) => {
+		$('#loader-wrapper').fadeOut().queue(() => {webpage()});
 	};
 
 	return {
-		initModule: initModule
+		initModule: initModule,
+		show: show,
+		hide: hide
 	};
 })();

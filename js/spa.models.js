@@ -3,8 +3,10 @@ spa.videos = (() => {
 
 	var initModule = () => {
 		spa.data.initModule();
-		console.log(spa.data.getJsonData());
-		videos = spa.data.getJsonData();
+		spa.data.getJsonData().done((data) => {
+			videos = data;
+			spa.splashscreen.hide(spa.router.showVideosPage);
+		});
 	}
 
 	var getVideos = () => {

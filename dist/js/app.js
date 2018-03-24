@@ -296,8 +296,13 @@ spa.router = function () {
     spa.hamburger.closeMenu();
   };
 
-  showVideosPage = function showVideosPage() {
+  var initVideosPage = function initVideosPage() {
+    spa.splashscreen.show();
     spa.videos.initModule();
+  };
+
+  showVideosPage = function showVideosPage() {
+    showMainHTML();
     var html = spa.template.parseTemplate('features.videos.videos', { videos: spa.videos.getVideos() });
     $('#main-content').html(html);
 
@@ -383,7 +388,7 @@ spa.router = function () {
     page('/index.html', showHomepage);
     page('/about', showAboutPage);
     page('/game', showGamePage);
-    page('/videos', showVideosPage);
+    page('/videos', initVideosPage);
     page({ hashbang: true });
 
     return true;
@@ -395,7 +400,11 @@ spa.router = function () {
     configModule: configModule,
     initModule: initModule,
     showSplashScreen: showSplashScreen,
-    showMainHTML: showMainHTML
+    showMainHTML: showMainHTML,
+    showGamePage: showGamePage,
+    showVideosPage: showVideosPage,
+    showAboutPage: showAboutPage,
+    showHomepage: showHomepage
   };
   //------------------- END PUBLIC METHODS ---------------------
 }();
@@ -449,7 +458,7 @@ spa.shell = function () {
   //------------------- BEGIN PUBLIC METHODS -------------------
   initModule = function initModule(container) {
     _stateMap.container = container;
-    spa.splashscreen.initModule();
+    spa.splashscreen.initModule(spa.router.showMainHTML);
   };
 
   return {
@@ -525,15 +534,14 @@ spa.template = function () {
 }();
 spa.data = function () {
   var _url;
+  var json;
 
   var initModule = function initModule() {
     _url = "http://localhost:3000/video";
   };
 
   var getJsonData = function getJsonData() {
-    $.ajax({ url: _url }).done(function (data) {
-      return data;
-    });
+    return $.ajax({ url: _url });
   };
 
   return {
@@ -572,8 +580,10 @@ spa.videos = function () {
 
   var initModule = function initModule() {
     spa.data.initModule();
-    console.log(spa.data.getJsonData());
-    videos = spa.data.getJsonData();
+    spa.data.getJsonData().done(function (data) {
+      videos = data;
+      spa.splashscreen.hide(spa.router.showVideosPage);
+    });
   };
 
   var getVideos = function getVideos() {
@@ -592,13 +602,21 @@ spa.splashscreen = function () {
     hide();
   };
 
+  var show = function show() {
+    spa.router.showSplashScreen();
+  };
+
   var hide = function hide() {
+    var webpage = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : spa.router.showMainHTML;
+
     $('#loader-wrapper').fadeOut().queue(function () {
-      spa.router.showMainHTML();
+      webpage();
     });
   };
 
   return {
-    initModule: initModule
+    initModule: initModule,
+    show: show,
+    hide: hide
   };
 }();

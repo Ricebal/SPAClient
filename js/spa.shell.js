@@ -52,7 +52,7 @@ spa.shell = (() => {
 	//------------------- BEGIN PUBLIC METHODS -------------------
 	initModule = (container) => {
 		_stateMap.container = container;
-		spa.splashscreen.initModule();
+		spa.splashscreen.initModule(spa.router.showMainHTML);
 	};
 
 	return {
