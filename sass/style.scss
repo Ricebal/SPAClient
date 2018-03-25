@@ -1,9 +1,12 @@
 body{
 	margin: 0;
+	font-family: "arial";
 }
 
 .image {
-	background: url('images/landscape.jpg');
+	width: 100%;
+	max-height: 45em;
+	z-index: 0;
 }
 
 .container {
@@ -25,6 +28,10 @@ body{
 		}
 	}
 
+	footer {
+		font-size: 0.7em;
+	}
+
 	nav {
 		background: #325772;
 		ul {
@@ -43,6 +50,21 @@ body{
 	}
 }
 
+#world {
+	content: url('https://wowprogress.com/guild_img/8113/out/type.site/guild_rank.world');
+	display: inline;
+}
+
+#europe {
+	content: url('https://wowprogress.com/guild_img/8113/out/type.site/guild_rank.region');
+	display: inline;
+}
+
+#realm {
+	content: url('https://wowprogress.com/guild_img/8113/out/type.site/guild_rank.realm');
+	display: inline;
+}
+
 /* media query for grid layout */
 @media only screen and (min-width: 600px) {
 
@@ -58,6 +80,10 @@ body{
 
 	section {
 		grid-column: span 3;
+	}		
+
+	.homepage {
+		grid-column: span 4;
 	}
 
 	/* nav styles */
@@ -90,6 +116,7 @@ body{
 		position: fixed;
 		width: 100%;
 		left: -100%;
+		z-index: 2;
 	}
 
 	.slideRight{
@@ -113,4 +140,60 @@ body{
 		text-align: left;
 	}
 
+}
+
+#widget-wrapper {
+	position: fixed;
+	width: 25em;
+	max-width: 90%;
+	height: 5em;
+	bottom: 1em;
+	right: 1em;
+	text-align: center;
+	border-radius: 1em;
+	box-shadow: 2px 3px rgba(0, 0, 0, 0.5);
+
+	#widget-text {
+		margin-top: 2em;
+	}
+
+	#widget-close {
+		position: fixed;
+		right: 0.7em;
+		bottom: 2em;
+		font-size: 2em;
+		cursor: pointer;
+	}
+}
+
+.widget-info {
+    color: #00529B;
+    background-color: #BDE5F8;
+}
+.widget-success {
+    color: #4F8A10;
+    background-color: #DFF2BF;
+}
+.widget-warning {
+    color: #9F6000;
+    background-color: #FEEFB3;
+}
+.widget-error {
+    color: #D8000C;
+    background-color: #FFD2D2;
+}
+
+.videoWrapper {
+	position: relative;
+	padding-bottom: 56.25%; /* 16:9 */
+	padding-top: 25px;
+	height: 0;
+}
+.videoWrapper iframe {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 0;
 }

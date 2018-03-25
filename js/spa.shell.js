@@ -53,6 +53,7 @@ spa.shell = (() => {
 	initModule = (container) => {
 		_stateMap.container = container;
 		spa.splashscreen.initModule(spa.router.showMainHTML);
+		spa.widget.initModule('#widget-wrapper');
 	};
 
 	return {

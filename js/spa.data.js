@@ -1,13 +1,15 @@
 spa.data = (() =>{
-	var _url;
-	var json;
+	var _url,
+		_timeout,
+		initModule, getJsonData;
 
-	var initModule = () => {
+	initModule = () => {
 		_url = "http://localhost:3000/video";
+		_timeout = 5000;
 	}
 
-	var getJsonData = () => {
-		return $.ajax({ url: _url });
+	getJsonData = () => {
+		return $.ajax({ url: _url, timeout: _timeout });
 	}
 
 	return {

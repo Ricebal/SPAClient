@@ -1,15 +1,23 @@
 spa.videos = (() => {
-	var videos = [];
+	var videos = [],
+		initModule,
+		getVideos;
 
-	var initModule = () => {
+	initModule = () => {
 		spa.data.initModule();
 		spa.data.getJsonData().done((data) => {
+			spa.widget.configModule('success');
+			spa.widget.toggle('Getting json data successful');
 			videos = data;
 			spa.splashscreen.hide(spa.router.showVideosPage);
+		}).fail(() => {
+			spa.widget.configModule('error');
+			spa.widget.toggle('Error getting json data');
+			spa.splashscreen.hide(spa.router.showHomePage);
 		});
 	}
 
-	var getVideos = () => {
+	getVideos = () => {
 		return videos;
 	}
 

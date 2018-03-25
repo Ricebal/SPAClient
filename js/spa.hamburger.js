@@ -1,6 +1,8 @@
 spa.hamburger = (() => {
+	var initModule, openMenu, closeMenu;
 
-	var initModule = () => {
+
+	initModule = () => {
 		$('#openMenu').click(() => {
 			openMenu();
 		});
@@ -10,11 +12,11 @@ spa.hamburger = (() => {
 		});
 	}
 
-	var openMenu = () => {
+	openMenu = () => {
 		$('#nav').removeClass('slideLeft').addClass('slideRight');
 	}
 
-	var closeMenu = () => {
+	closeMenu = () => {
 		$('#nav').removeClass('slideRight').addClass('slideLeft');
 	}
 

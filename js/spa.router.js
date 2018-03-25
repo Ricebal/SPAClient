@@ -29,6 +29,7 @@ spa.router = (() => {
 		showMainHTML,
 		showGamePage,
 		showVideosPage,
+		initVideosPage,
 		configModule, initModule;
 //----------------- END MODULE SCOPE VARIABLES ---------------
 
@@ -50,11 +51,13 @@ spa.router = (() => {
 	showAboutPage = () => {
 		var html = spa.template.parseTemplate('features.about.about', {});
 		$('#main-content').html(html);
+		$('#main-content').removeClass('homepage');
+		$('aside').removeClass('homepage');
 
 		spa.hamburger.closeMenu();
 	};	
 
-	var initVideosPage = () => {
+	initVideosPage = () => {
 		spa.splashscreen.show();
 		spa.videos.initModule();
 	}
@@ -63,6 +66,8 @@ spa.router = (() => {
 		showMainHTML();
 		var html = spa.template.parseTemplate('features.videos.videos', {videos: spa.videos.getVideos()});
 		$('#main-content').html(html);
+		$('#main-content').removeClass('homepage');
+		$('aside').removeClass('homepage');
 
 		spa.hamburger.closeMenu();
 	};
@@ -72,14 +77,20 @@ spa.router = (() => {
 			.parseTemplate('features.game.game', {});
 		$('#main-content').html(html);
 
+		$('#main-content').removeClass('homepage');
+
+
 		spa.hamburger.closeMenu();
 	}
 
 	showHomepage = () => {
 
 		var html = spa.template
-			.parseTemplate('features.homepage.homepage', {});
+			.parseTemplate('features.homepage.homepage', {url: 'images/landscape.jpg'});
 		$('#main-content').html(html);
+
+		$('#main-content').addClass('homepage');
+		$('aside').addClass('homepage');
 
 		spa.hamburger.closeMenu();
 	};
@@ -97,6 +108,8 @@ spa.router = (() => {
 
 		setJqueryMap();
 		spa.hamburger.initModule();
+
+		showHomepage();
 	};
 
 

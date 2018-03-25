@@ -1,15 +1,18 @@
 spa.splashscreen = (() => {
-	var initModule = () => {
+	var initModule, show, hide;
+
+	initModule = () => {
 		spa.router.showSplashScreen();
 		// setTimeout(hide, 3000);
 		hide();
 	};
 
-	var show = () => {
+
+	show = () => {
 		spa.router.showSplashScreen();
 	};
 
-	var hide = (webpage = spa.router.showMainHTML) => {
+	hide = (webpage = spa.router.showMainHTML) => {
 		$('#loader-wrapper').fadeOut().queue(() => {webpage()});
 	};
 

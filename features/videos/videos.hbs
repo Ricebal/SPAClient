@@ -1,6 +1,9 @@
 <h1>Video's</h1>
 
 {{#each videos}}
-	<h2>{{title}}</h2>
+<h2>{{title}}</h2>
+<div class="videoWrapper">
 	<iframe width="560" height="315" src="{{url}}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+</div>
+<br />
 {{/each}}
