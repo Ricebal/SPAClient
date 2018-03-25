@@ -3,13 +3,8 @@ spa.hamburger = (() => {
 
 
 	initModule = () => {
-		$('#openMenu').click(() => {
-			openMenu();
-		});
-
-		$('#closeMenu').click(() => {
-			closeMenu();
-		});
+		$('#openMenu').click(openMenu);
+		$('#closeMenu').click(closeMenu);
 	}
 
 	openMenu = () => {
