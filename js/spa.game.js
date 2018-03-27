@@ -2,6 +2,7 @@ spa.game = (() => {
 	var myGamePiece;
 	var myObstacles = [];
 	var myScore;
+	var highScore = 0;
 
 	var startGame = () => {
 		myGamePiece = new component(30, 30, "red", 10, 120);
@@ -81,6 +82,10 @@ spa.game = (() => {
 		var x, height, gap, minHeight, maxHeight, minGap, maxGap;
 		for (var i = 0; i < myObstacles.length; i += 1) {
 			if (myGamePiece.crashWith(myObstacles[i])) {
+				if(myGameArea.frameNo > highScore){
+					highScore = myGameArea.frameNo;
+					$('#highscoreLabel').html('Highscore: ' + highScore);
+				}
 				return;
 			} 
 		}
@@ -117,10 +122,10 @@ spa.game = (() => {
 	}
 
 	var reset = () => {
-		myGameArea.clear();
 		myGamePiece = null;
 		myObstacles = [];
 		myScore = null;
+		clearInterval(myGameArea.interval);
 		startGame();
 	}
 

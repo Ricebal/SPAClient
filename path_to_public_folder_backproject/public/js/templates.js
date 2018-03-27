@@ -7,7 +7,7 @@ this["spa_templates"]["templates"]["features"]["about"]["about"] = Handlebars.te
 },"useData":true});
 this["spa_templates"]["templates"]["features"]["game"] = this["spa_templates"]["templates"]["features"]["game"] || {};
 this["spa_templates"]["templates"]["features"]["game"]["game"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-    return "<div id=\"gameCanvas\"></div>\r\n<br>\r\n<button onmousedown=\"spa.game.accelerate(-0.2)\" onmouseup=\"spa.game.accelerate(0.05)\">ACCELERATE</button><button onclick=\"spa.game.reset()\">RESET</button>\r\n<p>Use the ACCELERATE button to stay in the air</p>\r\n<p>How long can you stay alive?</p>";
+    return "<div id=\"gameCanvas\"></div>\r\n<br>\r\n<button onmousedown=\"spa.game.accelerate(-0.2)\" onmouseup=\"spa.game.accelerate(0.05)\">ACCELERATE</button><button onclick=\"spa.game.reset()\">RESET</button>\r\n<p>Use the ACCELERATE button to stay in the air</p>\r\n<p>How long can you stay alive?</p>\r\n<p id=\"highscoreLabel\">Highscore: 0</p>";
 },"useData":true});
 this["spa_templates"]["templates"]["features"]["homepage"] = this["spa_templates"]["templates"]["features"]["homepage"] || {};
 this["spa_templates"]["templates"]["features"]["homepage"]["homepage"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
