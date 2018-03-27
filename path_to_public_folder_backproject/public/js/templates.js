@@ -7,7 +7,7 @@ this["spa_templates"]["templates"]["features"]["about"]["about"] = Handlebars.te
 },"useData":true});
 this["spa_templates"]["templates"]["features"]["game"] = this["spa_templates"]["templates"]["features"]["game"] || {};
 this["spa_templates"]["templates"]["features"]["game"]["game"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-    return "";
+    return "<div id=\"gameCanvas\"></div>\r\n<br>\r\n<button onmousedown=\"spa.game.accelerate(-0.2)\" onmouseup=\"spa.game.accelerate(0.05)\">ACCELERATE</button><button onclick=\"spa.game.reset()\">RESET</button>\r\n<p>Use the ACCELERATE button to stay in the air</p>\r\n<p>How long can you stay alive?</p>";
 },"useData":true});
 this["spa_templates"]["templates"]["features"]["homepage"] = this["spa_templates"]["templates"]["features"]["homepage"] || {};
 this["spa_templates"]["templates"]["features"]["homepage"]["homepage"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
@@ -17,13 +17,13 @@ this["spa_templates"]["templates"]["features"]["homepage"]["homepage"] = Handleb
     + this.escapeExpression(((helper = (helper = helpers.url || (depth0 != null ? depth0.url : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0,{"name":"url","hash":{},"data":data}) : helper)))
     + "\" class=\"image\"></img>";
 },"useData":true});
-this["spa_templates"]["templates"]["features"]["splashscreen"] = this["spa_templates"]["templates"]["features"]["splashscreen"] || {};
-this["spa_templates"]["templates"]["features"]["splashscreen"]["splashscreen"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-    return "<div id=\"loader-wrapper\">\r\n	<div id=\"loader\"></div>\r\n</div>";
-},"useData":true});
 this["spa_templates"]["templates"]["features"]["mainhtml"] = this["spa_templates"]["templates"]["features"]["mainhtml"] || {};
 this["spa_templates"]["templates"]["features"]["mainhtml"]["mainhtml"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
     return "<div class=\"container\">\r\n		\r\n	<header role=\"banner\">\r\n		<h1><span class=\"toggle open\" id=\"openMenu\">&#10052;</span> Winter's Heart</h1>\r\n	</header>\r\n		<nav id=\"nav\" role=\"navigation\">\r\n			<span class=\"toggle close\" id=\"closeMenu\">×</span>\r\n			<ul>\r\n				<li>\r\n					<a href=\"/\">Home</a>\r\n				</li>\r\n				<li>\r\n					<a href=\"/videos\">Videos</a>\r\n				</li>\r\n				<li>\r\n					<a href=\"/game\">Game</a>\r\n				</li>\r\n				<li>\r\n					<a href=\"/about\">About</a>\r\n				</li>\r\n			</ul>\r\n		</nav>\r\n\r\n	<section id=\"main-content\" role=\"main\">\r\n\r\n	</section>\r\n\r\n	<aside>\r\n		<h3>Rankings</h3>\r\n		<a href=\"https://wowprogress.com/\"><div id=\"realm\"></div></a>\r\n		<a href=https://wowprogress.com/><div id=\"europe\"></div></a>\r\n		<a href=https://wowprogress.com/><div id=\"world\"></div></a>\r\n	</aside>\r\n\r\n	<footer>\r\n		&#169; Nicander Mohrmann\r\n	</footer>\r\n		\r\n</div>";
+},"useData":true});
+this["spa_templates"]["templates"]["features"]["splashscreen"] = this["spa_templates"]["templates"]["features"]["splashscreen"] || {};
+this["spa_templates"]["templates"]["features"]["splashscreen"]["splashscreen"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+    return "<div id=\"loader-wrapper\">\r\n	<div id=\"loader\"></div>\r\n</div>";
 },"useData":true});
 this["spa_templates"]["templates"]["features"]["videos"] = this["spa_templates"]["templates"]["features"]["videos"] || {};
 this["spa_templates"]["templates"]["features"]["videos"]["videos"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {

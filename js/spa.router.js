@@ -78,8 +78,8 @@ spa.router = (() => {
 		$('#main-content').html(html);
 
 		$('#main-content').removeClass('homepage');
-
-
+		$('aside').removeClass('homepage');
+		spa.game.startGame();
 		spa.hamburger.closeMenu();
 	}
 
